@@ -1,0 +1,23 @@
+RewriteEngine On
+RewriteBase /elizalims/
+
+# Prevent directory listing
+Options -Indexes
+
+# Handle form submissions and AJAX calls first
+RewriteRule ^contact-mail$ contact-mail.php [L]
+RewriteRule ^store_captcha$ store_captcha.php [L]
+
+# Handle existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Remove .php extension from all other URLs
+# 1. Check if the .php file exists
+RewriteCond %{REQUEST_FILENAME}.php -f
+# 2. Rewrite to the .php file
+RewriteRule ^(.*)$ $1.php [L]
+
+# Redirect /page.php to /page (only for actual .php files)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+?)\.php[\s?] [NC]
+RewriteRule ^(.+?)\.php$ /elizalims/$1 [R=301,L,NE]
