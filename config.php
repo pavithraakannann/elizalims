@@ -11,5 +11,5 @@ define('SMTP_FROM_NAME', 'ElizaLIMS - AI Powered Laboratory Automation Platform'
 // 0 = off (for production)
 // 1 = client messages
 // 2 = client and server messages
-define('SMTP_DEBUG', 2);
+define('SMTP_DEBUG', 2); 
 ?>
